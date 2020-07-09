@@ -1,0 +1,5 @@
+SELECT * FROM station_data
+WHERE tornado AND hail;
+
+SELECT year, temperature, coalesce(snow_depth, 0) 
+FROM station_data WHERE temperature BETWEEN 30 and 60;

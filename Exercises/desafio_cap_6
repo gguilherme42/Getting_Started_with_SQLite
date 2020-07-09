@@ -1,0 +1,23 @@
+--A temperatura vem aumentando em todo mes 
+--de janeiro nos ultimos 20 anos?
+--Resposta: Nao!
+
+SELECT year ano, month mes, 
+ROUND(AVG(temperature), 2) temperatura
+FROM station_data
+GROUP BY 1, 2 
+HAVING mes = 1 and temperatura > 32
+and ano >= 1990
+ORDER BY year asc;
+
+--Quantas vezes tivemos e nao tivemos granizos ou tornados?
+-- tivemos granizo = 3000 = tivemos tornado
+-- tivemos granizo = 25000 = tivemos tornado
+
+SELECT 
+(SELECT COUNT(hail) FROM station_data WHERE hail) Tivemos_Granizo,
+(SELECT COUNT(hail) FROM station_data WHERE NOT hail) NaoTivemos_Granizo,
+(SELECT COUNT(tornado) FROM station_data WHERE tornado) Tivemos_Tornado,
+(SELECT COUNT(tornado) FROM station_data WHERE NOT tornado) NaoTivemos_Tornado;
+
+

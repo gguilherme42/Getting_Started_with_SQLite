@@ -1,0 +1,32 @@
+SELECT COUNT(*) Total_Records FROM station_data;
+--28000
+
+SELECT year, month, rain, COUNT(*) Total_Records 
+FROM station_data
+WHERE rain
+GROUP BY year, month 
+ORDER BY Total_Records DESC;
+
+
+SELECT year, month, COUNT(*) Total_Records 
+FROM station_data
+WHERE rain
+GROUP BY 1, 2 
+ORDER BY 2, 1 ASC;
+--Posicoes ordinais
+
+
+SELECT year, SUM(rain) total_rain,
+ROUND(SUM(snow_depth), 2) total_snow,
+SUM(precipitation) total_precipitation,
+MAX(precipitation) max_precipitation
+FROM station_data
+WHERE year = 2010
+GROUP BY year;
+
+
+SELECT year,
+ROUND(SUM(precipitation), 2) total_precipitation
+FROM station_data
+GROUP BY year
+HAVING  SUM(precipitation) > 30;

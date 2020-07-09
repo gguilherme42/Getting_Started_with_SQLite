@@ -1,0 +1,4 @@
+SELECT NAME Empresa, 
+STREET_ADDRESS || ', ' || CITY  ||
+' - ' ||  STATE Endereco
+FROM CUSTOMER;
