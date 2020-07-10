@@ -1,0 +1,1 @@
+UPDATE Participant SET Email = UPPER(Email);

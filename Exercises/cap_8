@@ -1,0 +1,16 @@
+--Total revenue = Receita total
+
+select c.customer_id, c.name, c.state, sum(o.ORDER_QTY * p.price) 
+from customer c
+inner join customer_order o on o.customer_id = c.customer_id
+inner join product p on o.product_id = p.product_id
+group by 1, 2, 3;
+
+
+select c.customer_id, c.name, c.state, 
+coalesce(sum(o.ORDER_QTY * p.price), 0) total_revenue 
+from customer c
+left join customer_order o on o.customer_id = c.customer_id
+left join product p on o.product_id = p.product_id
+group by 1, 2, 3
+order by total_revenue DESC;

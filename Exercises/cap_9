@@ -1,0 +1,8 @@
+--AutoIncrement nao e necessario no SQLite, pois esta implicito no Primary Key
+
+    
+CREATE VIEW Ticket_Presentation_Owner AS
+    SELECT O.Name Owner, T.Id Ticket_code, P.Name Presentation
+    FROM Ticket T
+    INNER JOIN Participant O ON O.Id = T.Participant_Id
+    INNER JOIN Presentation P ON P.Id = T.Presentation_Id;

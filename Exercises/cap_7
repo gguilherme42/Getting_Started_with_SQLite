@@ -1,0 +1,19 @@
+
+SELECT report_code, year, month, day, wind_speed,    
+    CASE
+        WHEN wind_speed >= 40 THEN 'HIGH'
+        WHEN wind_speed >= 30 THEN 'MODERATE'
+        ELSE 'LOW'
+    END AS 'wind_severity'
+FROM station_data;
+
+
+SELECT year,
+
+MAX(CASE WHEN tornado = 1 THEN precipitation ELSE NULL END) as max_tornado_precipitation,
+
+MAX(CASE WHEN tornado = 0 THEN precipitation ELSE NULL END) as max_non_tornado_precipitation
+
+FROM station_data
+GROUP BY year
+HAVING max_tornado_precipitation NOT NULL AND max_non_tornado_precipitation NOT NULL;
